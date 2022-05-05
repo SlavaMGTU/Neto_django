@@ -21,6 +21,6 @@ from calculator.views import view
 
 
 urlpatterns = [
-    path('view/<dish>/', view),
+    path('/<dish>/', view),
 ]
 

@@ -35,6 +35,7 @@ def view(request, dish):
         'recipe': {},
     }
     amount = int(request.GET.get("servings", 1))
+    #if dish in DATA:
     for key, value in DATA[dish].items():
         DATA[dish][key] = value * amount
     context['recipe'] = DATA[dish]
