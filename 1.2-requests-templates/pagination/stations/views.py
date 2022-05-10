@@ -39,7 +39,7 @@ def bus_stations(request):
         # также передайте в контекст список станций на странице
         CONTENT = list(zip(list_Name, list_Street, list_District))
         paginator_bus = Paginator(CONTENT, 10)
-        bus_stations = paginator_bus.get_page(page)
+        bus_stations = paginator_bus.get_page(page).object_list
         context = {
             'bus_stations': bus_stations,
             'page': page,
