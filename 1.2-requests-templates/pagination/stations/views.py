@@ -20,6 +20,11 @@ def index(request):
 def bus_stations(request):
     with open('data-398-2018-08-30.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)#, fieldnames=('Name', 'Street', 'District')
+        CONTENT= {
+            'Name': {},
+            'Street': {},
+            'District': {},
+             }
         reader2, bus_stations = {},{}
         list_Name, list_Street, list_District = [], [], []
         page=1
@@ -37,7 +42,10 @@ def bus_stations(request):
         #     if key == "Name":
         #         bus_stations[key] = value
         # также передайте в контекст список станций на странице
-        CONTENT = list(zip(list_Name, list_Street, list_District))
+        #CONTENT = list(zip(list_Name, list_Street, list_District))
+        CONTENT["Name"]=list_Name
+        CONTENT["Street"]=list_Street
+        CONTENT['District']=list_District
         paginator_bus = Paginator(CONTENT, 10)
         bus_stations = paginator_bus.get_page(page).object_list
         context = {
