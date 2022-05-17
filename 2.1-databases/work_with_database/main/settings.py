@@ -55,7 +55,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': '1q2w3e4rPostgres',
+        'PASSWORD': '1q2w3e4r5Postgres',
     }
 }
 
