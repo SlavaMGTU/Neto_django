@@ -7,9 +7,7 @@ def index(request):
 
 def show_catalog(request):
     template = 'catalog.html'
-    context = {
-
-    }
+    context = {}
     return render(request, template, context)
 
 
