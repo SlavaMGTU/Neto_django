@@ -9,17 +9,17 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        with open('phones.csv', 'r') as file:
-            phones = list(csv.DictReader(file, delimiter=';'))
+        with open('phones.csv', 'r') as f:
+            phones = list(csv.DictReader(f, delimiter=';'))
 
-        for phone in phones:
-            # TODO: Добавьте сохранение модели
-            phone = Phone.objects.update_or_create(
-                name=phone['name'],
-                price=phone['name'],
-                image=phone['image'],
-                release_date=phone['release_date'],
-                lte_exists=phone['lte_exists'],
-            )
-            print(phones)
+            for phone in phones:
+                # TODO: Добавьте сохранение модели
+                _, phone = Phone.objects.update_or_create(
+                    name=phone['name'],
+                    price=phone['name'],
+                    image=phone['image'],
+                    release_date=phone['release_date'],
+                    lte_exists=phone['lte_exists'],
+                )
+                print(phones)
         pass
