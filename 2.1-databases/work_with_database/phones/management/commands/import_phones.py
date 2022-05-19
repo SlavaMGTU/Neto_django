@@ -17,7 +17,7 @@ class Command(BaseCommand):
             for phone in phones:
                 # TODO: Добавьте сохранение модели
                 phone = Phone.objects.update_or_create(
-                    id=phone['id'],
+                    #id=phone['id'],
                     name=phone['name'],
                     price=phone['price'],
                     image=phone['image'],
