@@ -5,11 +5,14 @@ from books.models import Book
 
 def books_view(request):
     template = 'books/books_list.html'
-
     sort_by = request.GET.get('sort')
-    context = {'books':  Book.objects.all().order_by(sort_by)}
-    Book.objects().filter().orders_by().first()# Самая маленькая из больших
-    Book.objects().filter().orders_by().lost()# Самая маленькая из больших
+    if sort_by == 'next':
+        Book.objects().
+        Book.objects().filter().orders_by().first()
+        # Самая маленькая из больших
+    elif sort_by == 'prev':
+        Book.objects().filter().orders_by().lost()# Самая большая из маленьких
+    context = {'books': Book.objects.all().order_by(sort_by)}
     return render(request, template, context)
 
 # into file books_list.html
