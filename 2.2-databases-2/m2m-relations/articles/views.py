@@ -10,8 +10,10 @@ def articles_list(request):
     # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.order_by
     ordering = '-published_at'
     context = {'object_list': Article.objects.all().order_by(ordering)}
-    # for article in Article.objects.all:
-    #     print(article.title)
-    #     for scope in Article.objects.scopes.all:
-    #         print(scope.tag.name)
+    # for article in context['object_list']:
+    #      print(article.title)
+    #      scopes=article.tags.all()
+    #      for scope in scopes.iterator():
+    #         print(scope.tag.is_main)
+    #         print(scope.scope.name)
     return render(request, template, context)
