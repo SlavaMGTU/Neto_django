@@ -1,35 +1,35 @@
+from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 # TODO: опишите необходимые обработчики, рекомендуется использовать generics APIView классы:
 # TODO: ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
+from measurement.models import Sensor
+from measurement.serializers import SensorSerializer, SensorDetailSerializer
 
 
-# @api_view(['GET', 'POST'])
-# def demo(request):
-#     if request.method == 'GET':
-#         weapons = Weapon.objects.all()
-#         ser = WeaponSerializer(weapons, many=True)
-#         return Response(ser.data)
-#     if request.method == 'POST':
-#         return Response({'status': 'OK'})
-
-
-# class DemoView(APIView):
+# class sensorsView(ListCreateAPIView):
 #     def get(self, request):
-#         weapons = Weapon.objects.all()
-#         ser = WeaponSerializer(weapons, many=True)
+#         sensors = Sensor.objects.all()
+#         ser = SensorSerializer(sensors, many=True)
 #         return Response(ser.data)
 #
 #     def post(self, request):
 #         return Response({'status': 'OK'})
 
 
-# class DemoView(ListAPIView):
-#     queryset = Weapon.objects.all()
-#     serializer_class = WeaponSerializer
-#
-#     def post(self, request):
-#         return Response({'status': 'OK'})
-#
-#
-# class WeaponView(RetrieveAPIView):
-#     queryset = Weapon.objects.all()
-#     serializer_class = WeaponSerializer
+class SensorsView(ListCreateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
+
+    def post(self, request):
+        input()
+        #r = request.post(url=url, headers=headers, data=data)
+        return Response({'status': 'OK'})
+
+
+class SensorDetailView(RetrieveAPIView):#RetrieveUpdateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorDetailSerializer
