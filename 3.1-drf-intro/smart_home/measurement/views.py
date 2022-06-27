@@ -24,15 +24,16 @@ class SensorsView(ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
-    def post(self, request, name, description):
-        ordering = '-id'
-        date = {'id': Sensor.objects.all().order_by(ordering)}
-        for new_id in date['id']:
-            if new_id+1 not in date['id']:
-                new_id+=1
-        Sensor(id=new_id, name =name, description=description).save()
-        #r = request.post(url=url, headers=headers, data=data)
-        return Response({'status': 'OK'})
+    def post(self, request):#, new_id, name, description):
+        # ordering = '-id'
+        # date = {}
+        # date = {'object_list': Sensor.objects.all().order_by(ordering)}#
+        # new_id=1
+        # while new_id in date['object_list']:
+        #     new_id += 1
+        #Sensor(id=new_id, name =name, description=description).save()
+        return Response({'status': 'OK'}) #f'new sensor: id='{new_id})#
+    # r = request.post(url=url, headers=headers, data=data)
 
 
 class SensorDetailView(RetrieveAPIView):#RetrieveUpdateAPIView):

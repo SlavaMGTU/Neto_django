@@ -12,7 +12,7 @@ class Sensor(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.name
+        return self.id
 
 class Measurement (models.Model):
     temperature = models.FloatField(verbose_name='Температура при измерении')
