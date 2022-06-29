@@ -16,7 +16,7 @@ class Sensor(models.Model):
 
 class Measurement (models.Model):
     temperature = models.FloatField(verbose_name='Температура при измерении')
-    created_at = models.DateTimeField(verbose_name='Дата замера')
+    created_at = models.DateTimeField(auto_now=True, verbose_name='Дата замера')
     sensor = models.ManyToManyField(Sensor, through='Chain', related_name= 'measurements')
 #    class DateField(auto_now=False, auto_now_add=False, **options)???
  #   image = models.ImageField(null=True, blank=True, verbose_name='Изображение замера')
@@ -30,7 +30,6 @@ class Measurement (models.Model):
 
 
 class Chain (models.Model):
-    id_sensor = models.PositiveIntegerField( default = 999, verbose_name='ID датчика')
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, related_name= 'chains')
     measurement = models.ForeignKey(Measurement, on_delete=models.CASCADE, related_name='chains')
 
