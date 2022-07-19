@@ -14,7 +14,7 @@ class ProductPositionSerializer(serializers.ModelSerializer):
     # настройте сериализатор для позиции продукта на складе
     class Meta:
         model = StockProduct
-        fields = ('product', 'quantity', 'price')
+        fields = ('id', 'product', 'quantity', 'price')
 
 
 class StockSerializer(serializers.ModelSerializer):
