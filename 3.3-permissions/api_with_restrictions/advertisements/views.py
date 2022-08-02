@@ -12,8 +12,8 @@ class AdvertisementViewSet(ModelViewSet):
     #   сериализаторов и фильтров
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-    throttle_classes = [AnonRateThrottle]
+    #permission_classes = [IsOwnerOrReadOnly]
+    #throttle_classes = [AnonRateThrottle]
 
 
     def get_permissions(self):
