@@ -23,9 +23,9 @@ from advertisements.views import AdvertisementViewSet
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
 
-router.register('advertisement', AdvertisementViewSet)
+router.register('advertisements', AdvertisementViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
-] #+ router.urls
+] + router.urls
