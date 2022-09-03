@@ -6,17 +6,17 @@ from advertisements.models import Advertisement
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
 
-    # def get_permissions(self) -> object:
-    #      """Получение прав для действий."""
-    #      if self.action in ["create", "update", "partial_update"]:
-    #          return [IsAuthenticated()]
-    #      return []
+    def get_permissions(self) -> object:
+         """Получение прав для действий."""
+         if self.action in ["create", "update", "partial_update"]:
+             return [IsAuthenticated()]
+         return []
 
     def has_permission(self, request, view):
          if request.method == 'GET':
              return True
          if request.method == 'POST' \
-                 and Advertisement.objects.filter(creator=request.user, status = 'OPEN').count() < 10:
+                 and Advertisement.objects.filter(creator=request.user, status = 'OPEN').count() < 10:# Фильтрация созданных  - не более 10
              return [IsAuthenticated()]
          return []
 

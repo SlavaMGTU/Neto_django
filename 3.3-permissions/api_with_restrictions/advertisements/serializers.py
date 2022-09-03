@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticated
 
 from advertisements.models import Advertisement
 
@@ -33,9 +34,24 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         validated_data["creator"] = self.context["request"].user
         return super().create(validated_data)
 
-    # def validate(self, data):
-    #     """Метод для валидации. Вызывается при создании и обновлении."""
-    #
-    #     # TODO: добавьте требуемую валидацию
-    #
-    #     return data
+    def validate(self, data):
+        """Метод для валидации. Вызывается при создании и обновлении."""
+
+        # TODO: добавьте требуемую валидацию
+        if self.context["request"].method == 'PATCH'\
+                       and Advertisement.objects.filter(creator=self.context["request"].user, status = 'OPEN').count() < 10: #Фильтрация созданных  - не более 10
+                   return True
+        else:
+            message = 'You must CLOSE some advartisments.'
+        return data
+
+
+
+        # def has_object_permission(self, request, view, obj):
+        #     print(obj.creator)  # admin Token 8affcdadbdd6b9f8ebefa5a552aa127ebff60178
+        #     print('Check IT!!!!!')
+        #     print(request.user)
+        #     if request.method == 'PATCH':
+        #         return request.user.is_authenticated and obj.creator == request.user
+        #     return []
+
